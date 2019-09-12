@@ -1,1 +1,5 @@
 follow steps in the static html file
+
+use this repository:
+
+https://github.com/hyperledger-snapshot-8-12-2019/composer
