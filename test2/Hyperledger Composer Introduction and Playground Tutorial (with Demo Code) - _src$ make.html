@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#">
+	<head><script src="/gdpr/gdprscript.js?buildTime=1568240901&hasRemindMe=true&stealth=false"></script>
+		<title>Hyperledger Composer Introduction and Playground Tutorial (with Demo Code) - /src$ make</title><meta property="og:site_name" content="/src$ make" />
+<meta property="og:title" content="Hyperledger Composer Introduction and Playground Tutorial (with Demo Code)" />
+<meta property="og:description" content="This blog post is going to introduce us to Hyperledger Composer, without installing anything. We&#039;ll go through the terminology and concepts of Composer, and then we&#039;ll use the Online Playground in the web browser with an example to make a demo blockchain." />
+<meta property="og:image" content="http://www.srcmake.com/uploads/5/3/9/0/5390645/published/265268822.png?1532349260" />
+<meta property="og:image" content="http://www.srcmake.com/uploads/5/3/9/0/5390645/130020697_orig.png" />
+<meta property="og:image" content="http://www.srcmake.com/uploads/5/3/9/0/5390645/composer-diagram_orig.png" />
+<meta property="og:image" content="https://www.srcmake.com/uploads/5/3/9/0/5390645/donateetherbutton_orig.png" />
+<meta property="og:image" content="http://www.srcmake.com/uploads/5/3/9/0/5390645/logo_1.png" />
+<meta property="og:url" content="http://www.srcmake.com/1/post/2018/08/composer.html" />
+<meta http-equiv='cache-control' content='no-cache' />
+<meta name="description" content="This blog post is going to introduce us to Hyperledger Composer, without installing anything. We&#039;ll go through the terminology and concepts of Composer, and then we&#039;ll use the Online Playground in the web browser with an example to make a demo blockchain." />
+
+
+<meta name="keywords" content="srcmake, programming, coding, hacker, tutorials, website, examples" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0;">
+
+		<div id="weebly-footer-signup-container" class="light" style="display:block !important; visibility:hidden !important;height: 62px !important;">
+<div class="signup-container-header trigger-signup" style="display:block !important; visibility:hidden !important;">
+<button class="start-free" style="display:block !important; visibility:hidden !important;">Create a free website</button>
+<div class="powered-by" style="display:block !important; visibility:hidden !important;">
+Powered by <span class="link weebly-icon" style="display:block !important; visibility:hidden !important;display:inline-block !important; visibility:hidden !important;"></span>
+</div>
+</div>
+</div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110994568-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110994568-1');
+</script>
+<meta name="msvalidate.01" content="84D47B8E33A62258DB525BAE1002BB45" />
+
+<style>
+		.tip-button:hover 
+			{
+			position:relative;
+			left: 3px;
+			}
+		.tip-button:active 
+			{
+			color:gold;
+			}
+		</style>
+		<link id="wsite-base-style" rel="stylesheet" type="text/css" href="//cdn2.editmysite.com/css/sites.css?buildTime=1562006036" />
+<link rel="stylesheet" type="text/css" href="//cdn2.editmysite.com/css/old/fancybox.css?1561666897" />
+<link rel="stylesheet" type="text/css" href="//cdn2.editmysite.com/css/social-icons.css?buildtime=1561666897" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="/files/main_style.css?1561863895" title="wsite-theme-css" />
+<link href='//fonts.googleapis.com/css?family=Lato:400,300,300italic,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+<link href='//fonts.googleapis.com/css?family=Montserrat:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+
+<link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+<link href='//fonts.googleapis.com/css?family=Vollkorn:400,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+<link href='//fonts.googleapis.com/css?family=Yellowtail&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+<link href='//fonts.googleapis.com/css?family=Karla:400,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+<link href='//fonts.googleapis.com/css?family=Vollkorn:400,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+<style type='text/css'>
+.wsite-elements.wsite-not-footer:not(.wsite-header-elements) div.paragraph, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) p, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .product-block .product-title, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .product-description, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .wsite-form-field label, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .wsite-form-field label, #wsite-content div.paragraph, #wsite-content p, #wsite-content .product-block .product-title, #wsite-content .product-description, #wsite-content .wsite-form-field label, #wsite-content .wsite-form-field label, .blog-sidebar div.paragraph, .blog-sidebar p, .blog-sidebar .wsite-form-field label, .blog-sidebar .wsite-form-field label {font-family:"Droid Sans" !important;letter-spacing: 0px !important;}
+#wsite-content div.paragraph, #wsite-content p, #wsite-content .product-block .product-title, #wsite-content .product-description, #wsite-content .wsite-form-field label, #wsite-content .wsite-form-field label, .blog-sidebar div.paragraph, .blog-sidebar p, .blog-sidebar .wsite-form-field label, .blog-sidebar .wsite-form-field label {}
+.wsite-elements.wsite-footer div.paragraph, .wsite-elements.wsite-footer p, .wsite-elements.wsite-footer .product-block .product-title, .wsite-elements.wsite-footer .product-description, .wsite-elements.wsite-footer .wsite-form-field label, .wsite-elements.wsite-footer .wsite-form-field label{}
+.wsite-elements.wsite-not-footer:not(.wsite-header-elements) h2, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .product-long .product-title, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .product-large .product-title, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .product-small .product-title, #wsite-content h2, #wsite-content .product-long .product-title, #wsite-content .product-large .product-title, #wsite-content .product-small .product-title, .blog-sidebar h2 {font-family:"Vollkorn" !important;font-weight:400 !important;}
+#wsite-content h2, #wsite-content .product-long .product-title, #wsite-content .product-large .product-title, #wsite-content .product-small .product-title, .blog-sidebar h2 {}
+.wsite-elements.wsite-footer h2, .wsite-elements.wsite-footer .product-long .product-title, .wsite-elements.wsite-footer .product-large .product-title, .wsite-elements.wsite-footer .product-small .product-title{}
+#wsite-title {font-family:"Yellowtail" !important;text-transform:  none !important;letter-spacing: 1px !important;}
+.wsite-not-footer h2.wsite-content-title a, .wsite-not-footer .paragraph a, .wsite-not-footer blockquote a, #blogTable .blog-sidebar a, #blogTable .blog-comments a, #blogTable .blog-comments-bottom a, #wsite-com-store a, #wsite-com-product-gen a {color:#5848b7 !important;}
+.wsite-menu-default a {font-family:"Karla" !important;}
+.wsite-menu a {}
+.wsite-image div, .wsite-caption {}
+.galleryCaptionInnerText {}
+.fancybox-title {}
+.wslide-caption-text {}
+.wsite-phone {}
+.wsite-headline,.wsite-header-section .wsite-content-title {font-family:"Vollkorn" !important;font-weight:400 !important;font-style:normal !important;letter-spacing: 0px !important;}
+.wsite-headline-paragraph,.wsite-header-section .paragraph {}
+.wsite-button-inner {}
+.wsite-not-footer blockquote {}
+.wsite-footer blockquote {}
+.blog-header h2 a {}
+#wsite-content h2.wsite-product-title {}
+.wsite-product .wsite-product-price a {}
+.wsite-not-footer h2.wsite-content-title a:hover, .wsite-not-footer .paragraph a:hover, .wsite-not-footer blockquote a:hover, #blogTable .blog-sidebar a:hover, #blogTable .blog-comments a:hover, #blogTable .blog-comments-bottom a:hover, #wsite-com-store a:hover, #wsite-com-product-gen a:hover {color:#33a27f !important;}
+@media screen and (min-width: 767px) {.wsite-elements.wsite-not-footer:not(.wsite-header-elements) div.paragraph, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) p, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .product-block .product-title, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .product-description, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .wsite-form-field label, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .wsite-form-field label, #wsite-content div.paragraph, #wsite-content p, #wsite-content .product-block .product-title, #wsite-content .product-description, #wsite-content .wsite-form-field label, #wsite-content .wsite-form-field label, .blog-sidebar div.paragraph, .blog-sidebar p, .blog-sidebar .wsite-form-field label, .blog-sidebar .wsite-form-field label {font-size:15px !important;line-height:29px !important;}
+#wsite-content div.paragraph, #wsite-content p, #wsite-content .product-block .product-title, #wsite-content .product-description, #wsite-content .wsite-form-field label, #wsite-content .wsite-form-field label, .blog-sidebar div.paragraph, .blog-sidebar p, .blog-sidebar .wsite-form-field label, .blog-sidebar .wsite-form-field label {}
+.wsite-elements.wsite-footer div.paragraph, .wsite-elements.wsite-footer p, .wsite-elements.wsite-footer .product-block .product-title, .wsite-elements.wsite-footer .product-description, .wsite-elements.wsite-footer .wsite-form-field label, .wsite-elements.wsite-footer .wsite-form-field label{}
+.wsite-elements.wsite-not-footer:not(.wsite-header-elements) h2, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .product-long .product-title, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .product-large .product-title, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .product-small .product-title, #wsite-content h2, #wsite-content .product-long .product-title, #wsite-content .product-large .product-title, #wsite-content .product-small .product-title, .blog-sidebar h2 {}
+#wsite-content h2, #wsite-content .product-long .product-title, #wsite-content .product-large .product-title, #wsite-content .product-small .product-title, .blog-sidebar h2 {}
+.wsite-elements.wsite-footer h2, .wsite-elements.wsite-footer .product-long .product-title, .wsite-elements.wsite-footer .product-large .product-title, .wsite-elements.wsite-footer .product-small .product-title{}
+#wsite-title {}
+.wsite-menu-default a {}
+.wsite-menu a {}
+.wsite-image div, .wsite-caption {}
+.galleryCaptionInnerText {}
+.fancybox-title {}
+.wslide-caption-text {}
+.wsite-phone {}
+.wsite-headline,.wsite-header-section .wsite-content-title {font-size:40px !important;}
+.wsite-headline-paragraph,.wsite-header-section .paragraph {}
+.wsite-button-inner {}
+.wsite-not-footer blockquote {}
+.wsite-footer blockquote {}
+.blog-header h2 a {font-size:26px !important;}
+#wsite-content h2.wsite-product-title {}
+.wsite-product .wsite-product-price a {}
+}</style>
+<style>
+.wsite-background {background-image: url("/uploads/5/3/9/0/5390645/background-images/1928251627.jpeg") !important;background-repeat: no-repeat !important;background-position: 50% 50% !important;background-size: 100% !important;background-color: transparent !important;background: inherit;}
+body.wsite-background {background-attachment: fixed !important;}.wsite-background.wsite-custom-background{ background-size: cover !important}
+</style>
+		<script>
+var STATIC_BASE = '//cdn1.editmysite.com/';
+var ASSETS_BASE = '//cdn2.editmysite.com/';
+var STYLE_PREFIX = 'wsite';
+</script>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
+
+<script type="text/javascript" src="//cdn2.editmysite.com/js/lang/en/stl.js?buildTime=1561666897&"></script>
+<script src="//cdn2.editmysite.com/js/site/main.js?buildTime=1562006036"></script><script type="text/javascript">
+		function initCustomerAccountsModels() {
+					(function(){_W.setup_rpc({"url":"\/ajax\/api\/JsonRPC\/CustomerAccounts\/","actions":{"CustomerAccounts":[{"name":"login","len":2,"multiple":false,"standalone":false},{"name":"logout","len":0,"multiple":false,"standalone":false},{"name":"getSessionDetails","len":0,"multiple":false,"standalone":false},{"name":"getAccountDetails","len":0,"multiple":false,"standalone":false},{"name":"getOrders","len":0,"multiple":false,"standalone":false},{"name":"register","len":4,"multiple":false,"standalone":false},{"name":"emailExists","len":1,"multiple":false,"standalone":false},{"name":"passwordReset","len":1,"multiple":false,"standalone":false},{"name":"passwordUpdate","len":3,"multiple":false,"standalone":false},{"name":"validateSession","len":1,"multiple":false,"standalone":false}]},"namespace":"_W.CustomerAccounts.RPC"});
+_W.setup_model_rpc({"rpc_namespace":"_W.CustomerAccounts.RPC","model_namespace":"_W.CustomerAccounts.BackboneModelData","collection_namespace":"_W.CustomerAccounts.BackboneCollectionData","bootstrap_namespace":"_W.CustomerAccounts.BackboneBootstrap","models":{"CustomerAccounts":{"_class":"CustomerAccounts.Model.CustomerAccounts","defaults":null,"validation":null,"types":null,"idAttribute":null,"keydefs":null}},"collections":{"CustomerAccounts":{"_class":"CustomerAccounts.Collection.CustomerAccounts"}},"bootstrap":[]});
+})();
+		}
+		if(document.createEvent && document.addEventListener) {
+			var initEvt = document.createEvent('Event');
+			initEvt.initEvent('customerAccountsModelsInitialized', true, false);
+			document.dispatchEvent(initEvt);
+		} else if(document.documentElement.initCustomerAccountsModels === 0){
+			document.documentElement.initCustomerAccountsModels++
+		}
+		</script>
+		<script type="text/javascript"> _W = _W || {}; _W.securePrefix='www.srcmake.com'; </script><script>_W = _W || {};
+			_W.customerLocale = "en_GB";
+			_W.storeName = null;
+			_W.storeCountry = "US";
+			_W.storeCurrency = "USD";
+			_W.storeEuPrivacyPolicyUrl = "";
+			com_currentSite = "865495106378703271";
+			com_userID = "5390645";</script><script type="text/javascript">_W.configDomain = "www.weebly.com";</script><script>_W.relinquish && _W.relinquish()</script>
+<script type="text/javascript" src="//cdn2.editmysite.com/js/lang/en/stl.js?buildTime=1562006036&"></script><script> _W.themePlugins = [];</script><script type="text/javascript"> _W.recaptchaUrl = "https://www.google.com/recaptcha/api.js"; </script><script type="text/javascript"><!--
+	
+	
+	function initFlyouts(){
+		initPublishedFlyoutMenus(
+			[{"id":"342406408809163556","title":"Home","url":"index.html","target":"","nav_menu":false,"nonclickable":false},{"id":"941014161652076470","title":"About","url":"about.html","target":"","nav_menu":false,"nonclickable":false},{"id":"287872146412716433","title":"Directory","url":"directory.html","target":"","nav_menu":false,"nonclickable":false},{"id":"180499935690900540","title":"Contact","url":"contact.html","target":"","nav_menu":false,"nonclickable":false}],
+			"342406408809163556",
+			'',
+			'active',
+			false,
+			{"navigation\/item":"<li {{#id}}id=\"{{id}}\"{{\/id}} class=\"wsite-menu-item-wrap\">\n\t<a\n\t\t{{^nonclickable}}\n\t\t\t{{^nav_menu}}\n\t\t\t\thref=\"{{url}}\"\n\t\t\t{{\/nav_menu}}\n\t\t{{\/nonclickable}}\n\t\t{{#target}}\n\t\t\ttarget=\"{{target}}\"\n\t\t{{\/target}}\n\t\t{{#membership_required}}\n\t\t\tdata-membership-required=\"{{.}}\"\n\t\t{{\/membership_required}}\n\t\tclass=\"wsite-menu-item\"\n\t\t>\n\t\t{{{title_html}}}\n\t<\/a>\n\t{{#has_children}}{{> navigation\/flyout\/list}}{{\/has_children}}\n<\/li>\n","navigation\/flyout\/list":"<div class=\"wsite-menu-wrap\" style=\"display:none\">\n\t<ul class=\"wsite-menu\">\n\t\t{{#children}}{{> navigation\/flyout\/item}}{{\/children}}\n\t<\/ul>\n<\/div>\n","navigation\/flyout\/item":"<li {{#id}}id=\"{{id}}\"{{\/id}}\n\tclass=\"wsite-menu-subitem-wrap {{#is_current}}wsite-nav-current{{\/is_current}}\"\n\t>\n\t<a\n\t\t{{^nonclickable}}\n\t\t\t{{^nav_menu}}\n\t\t\t\thref=\"{{url}}\"\n\t\t\t{{\/nav_menu}}\n\t\t{{\/nonclickable}}\n\t\t{{#target}}\n\t\t\ttarget=\"{{target}}\"\n\t\t{{\/target}}\n\t\tclass=\"wsite-menu-subitem\"\n\t\t>\n\t\t<span class=\"wsite-menu-title\">\n\t\t\t{{{title_html}}}\n\t\t<\/span>{{#has_children}}<span class=\"wsite-menu-arrow\">&gt;<\/span>{{\/has_children}}\n\t<\/a>\n\t{{#has_children}}{{> navigation\/flyout\/list}}{{\/has_children}}\n<\/li>\n"},
+			{}
+		)
+	}
+//-->
+</script>
+		
+		
+	</head>
+	<body class="no-header-page  wsite-page-index wsite-blog-post  full-width-off  wsite-theme-light"><!-- header-wrap -->
+	<div id="header-wrap">
+		<div id="header" class="content-wrap container">
+			<label id="nav-trigger" class="hamburger" for="mobile-trigger"></label>
+			<div id="logo"><span class="wsite-logo">
+
+	<a href="/">
+		<img src="/uploads/5/3/9/0/5390645/logo_1.png" alt="/src$ make" />
+	</a>
+
+</span></div>
+			<div id="header-right">
+				<div id="nav" class="nav"><ul class="wsite-menu-default">
+		<li id="active" class="wsite-menu-item-wrap">
+			<a
+						href="/"
+				class="wsite-menu-item"
+				>
+				Home
+			</a>
+			
+		</li>
+		<li id="pg941014161652076470" class="wsite-menu-item-wrap">
+			<a
+						href="/about.html"
+				class="wsite-menu-item"
+				>
+				About
+			</a>
+			
+		</li>
+		<li id="pg287872146412716433" class="wsite-menu-item-wrap">
+			<a
+						href="/directory.html"
+				class="wsite-menu-item"
+				>
+				Directory
+			</a>
+			
+		</li>
+		<li id="pg180499935690900540" class="wsite-menu-item-wrap">
+			<a
+						href="/contact.html"
+				class="wsite-menu-item"
+				>
+				Contact
+			</a>
+			
+		</li>
+</ul>
+</div>
+			</div>
+		</div>
+	</div>
+	<!-- end header-wrap -->
+
+	<div id="wrapper">
+		<div id="wrapper-content">
+			<div id="navmobile" class="nav"><ul class="wsite-menu-default">
+		<li id="active" class="wsite-menu-item-wrap">
+			<a
+						href="/"
+				class="wsite-menu-item"
+				>
+				Home
+			</a>
+			
+		</li>
+		<li id="pg941014161652076470" class="wsite-menu-item-wrap">
+			<a
+						href="/about.html"
+				class="wsite-menu-item"
+				>
+				About
+			</a>
+			
+		</li>
+		<li id="pg287872146412716433" class="wsite-menu-item-wrap">
+			<a
+						href="/directory.html"
+				class="wsite-menu-item"
+				>
+				Directory
+			</a>
+			
+		</li>
+		<li id="pg180499935690900540" class="wsite-menu-item-wrap">
+			<a
+						href="/contact.html"
+				class="wsite-menu-item"
+				>
+				Contact
+			</a>
+			
+		</li>
+</ul>
+</div>
+
+			<div id="main-content">
+
+				<div id="main-wrap" class="content-wrap">
+					<div class="wsite-section-content">
+						<div class="container"><div class="wsite-elements wsite-not-footer">
+	<table 
+	id="blogTable" 
+		class="wsite-not-footer" 
+	style="border: 0; width: 100%; table-layout: fixed" 
+>
+	<tr>
+	    <td valign="top">
+	        	<div id="342406408809163556-blog" class="blog-body" style="float: left;"> 
+		<div id="wsite-content">	<div id="blog-post-710347300544987073" class="blog-post">
+	
+	
+		<div class="blog-header">
+			<h2 class="blog-title">
+					<a class="blog-title-link blog-link" href="//www.srcmake.com/home/composer">Hyperledger Composer Introduction and Playground Tutorial (with Demo Code)</a>
+
+			</h2>
+			<p class="blog-date">
+					<span class="date-text">
+		8/20/2018
+	</span>
+
+			</p>
+			<p class="blog-comments">
+				
+			</p>
+		</div>
+	
+		<div class="blog-separator">&nbsp;</div>
+	
+		<div class="blog-content">
+				<div class="paragraph">
+To watch the 20 minute video where I explain the concepts and go over the code, click <a href="https://youtu.be/lTOuQajcIh8" target="_blank">here</a>.
+</div>
+
+<h2 class="wsite-content-title">Introduction - Hyperledger</h2>
+
+<div>
+<div class="wsite-image wsite-image-border-none" style="padding-top:10px;padding-bottom:10px;margin-left:0;margin-right:0;text-align:center">
+<a><img src="/uploads/5/3/9/0/5390645/published/265268822.png?1532349260" alt="Picture" style="width:545;max-width:100%"></a>
+
+<div style="display:block;font-size:90%"></div>
+</div>
+</div>
+
+<div class="paragraph">
+<a href="https://www.hyperledger.org/projects" target="_blank">Hyperledger projects</a> are blockchain related tools built by the open source community and the Hyperledger organization. We've already done a <a href="https://www.srcmake.com/home/iroha-tutorial" target="_blank">blog post on Hyperledger Iroha</a>, and another on <a href="https://www.srcmake.com/home/fabric" target="_blank">Hyperledger Fabric</a>. Now we're going to look at Hyperledger Composer. If you're completely new to blockchain, then take a look at <a href="https://www.srcmake.com/home/blockchain-10-simple-questions" target="_blank">this blogpost on Blockchain Explained With 10 Simple Questions</a>.<br>
+<br>
+This blog post is going to introduce us to Hyperledger Composer, without installing anything. We'll go through the terminology and concepts of Composer, and then we'll use the Online Playground in the web browser with an example to make a demo blockchain.
+</div>
+
+<h2 class="wsite-content-title">What Is Hyperledger Composer?</h2>
+
+<div>
+<div class="wsite-image wsite-image-border-none" style="padding-top:10px;padding-bottom:10px;margin-left:0;margin-right:0;text-align:center">
+<a><img src="/uploads/5/3/9/0/5390645/130020697_orig.png" alt="Picture" style="width:auto;max-width:100%"></a>
+
+<div style="display:block;font-size:90%"></div>
+</div>
+</div>
+
+<div class="paragraph">
+<a href="https://www.hyperledger.org/projects/composer" target="_blank">Hyperledger Composer</a> is a tool to help easily create blockchain networks. The best way to think about it is: you want to make your own custom blockchain, but it's simple enough that you just need to define who is going to be using the blockchain and what they're going to be trading/creating, then Composer will let you define those people/items and you can have your blockchain ready with minimal code.<br>
+<br>
+Composer is much easier to use than Fabric, but you have less control over the blockchain.<br>
+</div>
+
+<h2 class="wsite-content-title">Composer Terminology and Concepts</h2>
+
+<div class="paragraph">
+Let's go through a few keywords and concepts. Some of these are relevant because they're keywords in the programming languages used in Composer.&nbsp;
+</div>
+
+<div class="paragraph">
+To help us understand these concepts, this is going to be our example scenario:
+</div>
+
+<blockquote>
+We own a fast food restaurant. We sell food, and customers buy food. And maybe there are other fast food restaurants on the blockchain.
+</blockquote>
+
+<div class="paragraph">
+Simple enough, right? Let's see look at Composer concepts and see how it would relate to our example.
+</div>
+
+<div class="paragraph">
+<ol>
+<li><strong>Participant</strong> - a person that can own&nbsp;something or perform an action. <em>In our restaurant example, this could be a restaurant manager, cook, cashier, or even a customer.</em>​</li>
+
+<li><strong>Asset</strong> - an item of value. <em>In our example, t</em><em>his could be a burger, or french fries, or even money.&nbsp;</em></li>
+
+<li><strong>Transaction</strong> - When some participants create/trade assets.&nbsp;<em>In our example,&nbsp;a customer gives their money to us and we give them a burger, or if a chef makes&nbsp;new burgers.</em></li>
+
+<li><strong>Event</strong> - When an asset changes value. <em>In our example, we can emit events every time new burgers get made.</em>&nbsp;</li>
+
+<li><strong>CTO File</strong> - The extension (filename.cto) that we declare our models of participants, assets, transactions, and events in.&nbsp;</li>
+
+<li><strong>Transaction Functions</strong> - Some javascript code that will actually carry out the logic for a transaction. It gets passed a transaction object as a parameter (which has fields for whatever is defined in the transaction model variable in the CTO file.&nbsp;<em>For example, making burgers adds to the number of burger assets that we currently have.</em></li>
+
+<li>
+<strong>ACL File</strong> - a file extension (filename.acl) where we can put some rules for what participants can or cannot do/access. <em>For example, a manager can order more beef&nbsp;from a farm, but the cashier can't.&nbsp;</em>(Official ACL documentation <a href="https://hyperledger.github.io/composer/latest/reference/acl_language" target="_blank">here</a>.)
+</li>
+
+<li><strong>Asset Registry</strong> - The storage (place) where the our data lives. (<em>For example, how many burgers our restaurant currently has</em> would be looked up in the asset registry<em>.</em>) This is used in transaction functions.</li>
+
+<li><strong>getFactory()</strong> - You call this function in your code any time you want to create a new asset/event/participant/transaction.</li>
+
+<li><strong>Namespace</strong> - Basically, the way you organize things into groups. <em>For example, our restaurant could be named "srcmakeRestaurant", so all participants/assets owned by our restaurant belong to that namespace. Another restaurant (hyperledgerRestaurant) would be named that.&nbsp;We could get more specific depending on the situation: for examples, all cashiers could belong to "srcmakeRestaurant.cashiers" namespace.</em></li>
+
+<li>
+<strong>Queries</strong> - SQL-like statements written to find search for how many assets a participant has. <em>For example, how many burgers does srcmakeRestaurant have right now?</em> Written in a separate file (filename.qry). Mainly used so APIs can be written to easily find things on the chain.&nbsp;(Official query tutorial <a href="https://hyperledger.github.io/composer/latest/tutorials/queries" target="_blank">here</a>.)
+</li>
+
+<li><strong>Business Network Definition</strong> - You bundle all your files (models, scripts, permissions, queries) into a Business Network Archive (.bna) file, which represents your blockchain. See the following picture.</li>
+</ol>
+</div>
+
+<div>
+<div class="wsite-image wsite-image-border-none" style="padding-top:10px;padding-bottom:10px;margin-left:0px;margin-right:0px;text-align:center">
+<a><img src="/uploads/5/3/9/0/5390645/composer-diagram_orig.png" alt="Picture" style="width:auto;max-width:100%"></a>
+
+<div style="display:block;font-size:90%">
+How a Composer network is bundled. (Picture is owned by Hyperledger.)
+</div>
+</div>
+</div>
+
+<div class="wsite-spacer" style="height:50px;"></div>
+
+<h2 class="wsite-content-title">Hyperledger Composer Demo Code</h2>
+
+<div class="paragraph">
+Now that we know more about how Composer works, let's actually look at some example code. To make things simple, we'll have two files, one CTO file for our models (assets, participants, transactions, events) and one JS file for our javascript transaction functions. (An ACL file will automatically be generated for us for basic projects.)
+</div>
+
+<div class="paragraph">
+<u>CTO File:</u>
+</div>
+
+<div>
+<div id="240532176706997602" align="left" style="width: 100%; overflow-y: hidden;" class="wcustomhtml">
+<!-- HTML generated using hilite.me -->
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<table>
+<tr>
+<td>
+<pre style="margin: 0; line-height: 125%">
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+</pre>
+</td>
+
+<td>
+<pre style="margin: 0; line-height: 125%">
+// Copyright srcmake.com 2018
+namespace com.srcmake.restaurant
+
+participant cook identified by employeeId 
+    {
+    o String employeeId
+    o String firstName
+    }
+
+asset burgerAsset identified by assetId
+    {
+    o String assetId
+    --&gt; cook owner
+    o Integer quantity
+    }
+
+transaction MakeBurgers 
+    {
+    --&gt; burgerAsset burgers
+    o Integer newBurgerCount
+    }
+
+event MadeFreshBurgersEvent 
+    {
+    --&gt; burgerAsset burgers
+    o Integer howManyBefore
+    o Integer howManyNow
+    }
+</pre>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+
+<div class="wsite-spacer" style="height:50px;"></div>
+
+<div class="paragraph">
+<u>lib/scripts.js (Function) file:</u>
+</div>
+
+<div>
+<div id="867229940257300243" align="left" style="width: 100%; overflow-y: hidden;" class="wcustomhtml">
+<!-- HTML generated using hilite.me -->
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<table>
+<tr>
+<td>
+<pre style="margin: 0; line-height: 125%">
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+</pre>
+</td>
+
+<td>
+<pre style="margin: 0; line-height: 125%">
+<span style="color: #008000">// Copyright srcmake.com 2018</span>
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Create new burgers, so update the burger quantity.</span>
+<span style="color: #008000"> * @param {com.srcmake.restaurant.MakeBurgers} tx The burger asset instance.</span>
+<span style="color: #008000"> * @transaction</span>
+<span style="color: #008000"> */</span>
+async <span style="color: #0000ff">function</span> makeBurgers(tx) 
+    {
+    <span style="color: #008000">// The number of burgers we already have.</span>
+    <span style="color: #0000ff">const</span> oldBurgerCount = tx.burgers.quantity;
+
+    <span style="color: #008000">// Update the asset to what the new value is. </span>
+    tx.burgers.quantity = tx.newBurgerCount;
+
+    <span style="color: #008000">// Get the asset registry for the asset.</span>
+    <span style="color: #0000ff">const</span> assetRegistry = await getAssetRegistry(<span style="color: #a31515">'com.srcmake.restaurant.burgerAsset'</span>);
+    <span style="color: #008000">// Update the asset in the asset registry.</span>
+    await assetRegistry.update(tx.burgers);
+
+    <span style="color: #008000">// Emit an event for the modified asset.</span>
+    <span style="color: #0000ff">let</span> event = getFactory().newEvent(<span style="color: #a31515">'com.srcmake.restaurant'</span>, <span style="color: #a31515">'MadeFreshBurgersEvent'</span>);
+    event.burgers = tx.burgers;
+    event.howManyBefore = oldBurgerCount;
+    event.howManyNow = tx.newBurgerCount;
+    emit(event);
+    }
+</pre>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+
+<div class="paragraph">
+We'll use the code above in Playground to see how a sample network can be created.
+</div>
+
+<h2 class="wsite-content-title">Testing The Code In Playground (Online, No Installation)</h2>
+
+<div class="paragraph">
+<ol>
+<li>Go to the Online Playground by <a href="https://composer-playground.mybluemix.net/editor" target="_blank">clicking here</a>.
+</li>
+
+<li>Click the blue "Let's Blockchain" button.</li>
+
+<li>Click the "Deploy a new business network" grayed out card.</li>
+
+<li>Leave the default&nbsp;"basic information" about the network.&nbsp;</li>
+
+<li>Click on the "empty-business-network" card.</li>
+
+<li>Click on the blue "Deploy" button.</li>
+
+<li>Click on the words "Connect now -&gt;".</li>
+</ol>
+</div>
+
+<div class="paragraph">
+This is where our files will exist for our blockchain and where we'll deploy the code, and do our testing.<br>
+<br>
+Click on "Model File" on the left. Delete everything inside of the model file, and paste in our CTO code from above.<br>
+<br>
+Next, click the "Add a file..." button, select the "Script File (.js)" button, and press the blue "Add" button.<br>
+<br>
+Delete what's inside of the current script file, and paste in our Transaction function from above.&nbsp;<br>
+<br>
+Press the blue "Deploy Changes" button on the left.<br>
+<br>
+And like that, our blockchain is created and deployed.&nbsp;<br>
+<br>
+Now on the top of the scree, there's going to be a "Test" tab next to "Define". Click "Test". This is where we can play with our deployed network.&nbsp;<br>
+<br>
+Click the "cook" Participants tab on the left. Let's add a new cook by clicking the "+ Create New Participant" button. Delete the JSON Data Preview there and paste the following JSON code in:&nbsp;<br>
+</div>
+
+<div>
+<div id="239520473712089137" align="left" style="width: 100%; overflow-y: hidden;" class="wcustomhtml">
+<!-- HTML generated using hilite.me -->
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<table>
+<tr>
+<td>
+<pre style="margin: 0; line-height: 125%">
+1
+2
+3
+4
+5
+</pre>
+</td>
+
+<td>
+<pre style="margin: 0; line-height: 125%">
+{
+    "$class": <span style="color: #a31515">"com.srcmake.restaurant.cook"</span>,
+    "employeeId": <span style="color: #a31515">"1111"</span>,
+    "firstName": <span style="color: #a31515">"chefBilly"</span>
+}
+</pre>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+
+<div class="paragraph">
+Notice in the code: We're adding a cook (the only type of participant that we currently have defined) whose name is "chefBilly" to the blockchain, and he has an employeeId of "1111".<br>
+<br>
+Press the blue "Create Now" button to add this participant.<br>
+<br>
+Now click the "burgerAsset" tab on the left of the screen, and click "+ Create New Asset" to create some new burgers. Delete the JSON Preview Data and add the following JSON code in:<br>
+</div>
+
+<div>
+<div id="296505114346696756" align="left" style="width: 100%; overflow-y: hidden;" class="wcustomhtml">
+<!-- HTML generated using hilite.me -->
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<table>
+<tr>
+<td>
+<pre style="margin: 0; line-height: 125%">
+1
+2
+3
+4
+5
+6
+</pre>
+</td>
+
+<td>
+<pre style="margin: 0; line-height: 125%">
+{
+    "$class": <span style="color: #a31515">"com.srcmake.restaurant.burgerAsset"</span>,
+    "assetId": <span style="color: #a31515">"cheeseBurger"</span>,
+    "owner": <span style="color: #a31515">"resource:com.srcmake.restaurant.cook#1111"</span>,
+    "quantity": 5
+}
+</pre>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+
+<div class="paragraph">
+We're creating some burgerAssets and giving it an assetId of "cheeseBurger" (and this assetId represents the specific batch of burgers we're making). We're saying that the owner of these burgers is the cook with an id of 1111 (which we know is chefBilly). And to start out with, we have 5 of these burgerAssets.<br>
+<br>
+Click the blue "Create Now" button to create these assets on the blockchain.<br>
+<br>
+Finally, let's update this value by using the function we made. Click the blue "Submit Transaction" button on the left of the screen. By default, the drop down menu will only show the "MakeBurgers" transaction, because that's the only transaction we defined. Delete the JSON Data Preview that's there and add the following JSON code in:&nbsp;
+</div>
+
+<div>
+<div id="764681337427126882" align="left" style="width: 100%; overflow-y: hidden;" class="wcustomhtml">
+<!-- HTML generated using hilite.me -->
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<table>
+<tr>
+<td>
+<pre style="margin: 0; line-height: 125%">
+1
+2
+3
+4
+5
+</pre>
+</td>
+
+<td>
+<pre style="margin: 0; line-height: 125%">
+{
+    "$class": <span style="color: #a31515">"com.srcmake.restaurant.MakeBurgers"</span>,
+    "burgers": <span style="color: #a31515">"resource:com.srcmake.restaurant.burgerAsset#cheeseBurger"</span>,
+    "newBurgerCount": 10
+}
+</pre>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+
+<div class="paragraph">
+Notice that we're calling the MakeBurgers transaction, and the "burgers" that we're talking about (that we mentioned would be part of the transaction when we defined MakeBurgers in the CTO file) is the burgerAsset with the id of cheeseBurger. We specify that the newBurgerCount is going to be 10.<br>
+<br>
+Click the blue "Submit" button to make this transaction.
+</div>
+
+<div class="paragraph">
+And like that, we've changed the number of burgerAssets (with id#<span>cheeseBurger</span>) that chefBilly owns. If you look at the burgerAssets tab and look at the ones with id#<span>cheeseBurger</span>, you'll see that the quantity is now 10. (And if you check the record for the transaction in the All Transactions tab, you can see that an event went out.)
+</div>
+
+<h2 class="wsite-content-title">Conclusion</h2>
+
+<div class="paragraph">
+With this tutorial, we've learned all of the Hyperledger Composer concepts, keywords, and filetypes that we'll need to create a blockchain network. We saw some demo code and even tested that demo on the Online Composer Playground.<br>
+<br>
+In future tutorials, we'll create more complicated networks with more participants, assets, and transactions. We may also compare native Fabric development vs. Composer development (which one is better for making a blockchain?).
+</div>
+
+<div class="wsite-youtube" style="margin-bottom:10px;margin-top:10px;">
+<div class="wsite-youtube-wrapper wsite-youtube-size-auto wsite-youtube-align-center">
+<div class="wsite-youtube-container">
+<iframe src="//www.youtube.com/embed/lTOuQajcIh8?wmode=opaque" frameborder="0" allowfullscreen=""></iframe>
+</div>
+</div>
+</div>
+
+<div class="wsite-spacer" style="height:50px;"></div>
+
+<div class="paragraph">
+<span>​</span><span>Like this content and want more? Feel free to&nbsp;</span><a href="http://www.srcmake.com/directory.html" target="_blank">look around and find another blog post that interests you</a><span>. You can also contact me through one of the various social media channels.&nbsp;</span><br>
+<br>
+<span>Twitter:&nbsp;</span><a href="https://twitter.com/srcmake" target="_blank">@srcmake</a><br>
+<span>Discord:&nbsp;</span><a href="https://discord.gg/q5vAET3" target="_blank">srcmake#3644</a><br>
+<span>Youtube:&nbsp;</span><a href="https://www.youtube.com/c/srcmake" target="_blank">srcmake</a><br>
+<span>Twitch:&nbsp;</span><a href="https://www.twitch.tv/srcmake" target="_blank">www.twitch.tv/srcmake</a><br>
+<span>​Github:&nbsp;</span><a href="https://github.com/srcmake" target="_blank">srcmake</a>
+</div>
+
+<div class="paragraph">
+<u><font size="4">References</font></u><br>
+1. <a href="https://github.com/hyperledger/composer" target="_blank">The Composer source code on github.</a><br>
+2. <a href="https://hyperledger.github.io/composer/latest/introduction/introduction.html" target="_blank">The official Composer tutorial pages.</a><br>
+3. <a href="https://composer-playground.mybluemix.net/" target="_blank">Link to Playground.</a>
+</div>
+
+
+		</div>
+	
+	
+			<div class="blog-social  ">
+		<div class="blog-social-item blog-fb-like"><fb:like href="https://www.srcmake.com/1/post/2018/08/composer.html" width="90" layout="button_count" action="like" show_faces="false" share="false"></fb:like></div><div class="blog-social-item"><a class="twitter-share-button" href="http://twitter.com/share?url=https://www.srcmake.com/1/post/2018/08/composer.html" data-text="Hyperledger Composer Introduction and Playground Tutorial (with Demo Code) - /src$ make" data-count="horizontal"></a></div>
+		<div style="clear:both"></div>
+	</div>
+
+	
+		<div class="blog-comments-bottom">
+			
+		</div>
+	
+		<div class="blog-post-separator"></div>
+	</div>
+
+
+    <a name="comments" id="comments"></a>
+<div id="commentArea">
+	<div class="blog-comment-area">
+		
+
+		<div id="commentText">
+			<!-- lastComment -->
+		<div id="lastComment"> </div>
+		</div>
+		<br />
+			<div class="blog-notice-comments-closed">Comments are closed.</div>
+		
+		
+
+	</div>
+	<!-- bid-1: , path:  -->
+</div>
+ 
+<!-- bid: $blog_id --></div>
+	</div>
+
+	    </td>
+	        <td class="blog-sidebar" valign="top">
+	            <div id="342406408809163556-sidebar" class="column-blog">
+	<div class="blog-sidebar-separator">
+		<ul id="342406408809163556-sidebar-list" class="columnlist-blog" style="margin:0; padding: 0;">
+			<h2 class="blog-author-title">Author</h2>
+<p>Hi, I'm srcmake. I play video games and develop software.&nbsp;</p>
+
+<div class="paragraph"><font size="2">Pro-tip: Click the "<a href="http://www.srcmake.com/directory.html">DIRECTORY</a>" button in the menu to find a list of blog posts.</font></div>
+
+<div><div id="261312690806684123" align="left" style="width: 100%; overflow-y: hidden;" class="wcustomhtml"><img class="tip-button-side" src="https://www.srcmake.com/uploads/5/3/9/0/5390645/donateetherbutton_orig.png" alt="Metamask tip button" style="width:97%;">
+    <div class="message" ></div>
+
+	<script>
+	var MY_ADDRESS = '0x7891338cC2d668bA268B69e3b8f85Cdf3660495E'
+	var tipButton = document.querySelector('.tip-button-side')
+
+	tipButton.addEventListener('click', function() 
+		{
+		if (typeof web3 === 'undefined') 
+			{
+			return renderMessage('<div>You need to install <a href=“https://metmask.io“>MetaMask </a> to use this feature.  <a href=“https://metmask.io“>https://metamask.io</a></div>')
+			}
+
+		var user_address = web3.eth.accounts[0]
+
+		web3.eth.sendTransaction(
+			{
+			to: MY_ADDRESS,
+			from: user_address,
+			value: web3.toWei('0.01', 'ether'),
+			}, 
+			function (err, transactionHash) 
+				{
+				if (err) return renderMessage('There was a problem!: ' + err.message)
+				renderMessage('Thanks for the generosity!!')
+			})
+		})
+
+	function renderMessage (message) 
+		{
+		var messageEl = document.querySelector('.message')
+		messageEl.innerHTML = message
+		}
+	</script></div>
+
+
+
+</div>
+
+<div class="paragraph">License: All code and instructions are provided under the MIT License.</div>
+
+<div><div id="338991142170561494" align="left" style="width: 100%; overflow-y: hidden;" class="wcustomhtml"><link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+      <a href="https://discord.gg/q5vAET3" target="_blank" style="color:inherit;text-decoration:none;">
+	  <div style="background:rgba(0,0,0,0.9);color:white;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:auto;overflow: hidden;padding: 1rem 1rem;text-align:center;">
+        <i style="color:#7289DA;" class="fab fa-discord fa-3x"></i>
+        <h3>Discord</h3>
+        <p style="color:#F1B957;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Chat with me.</p>
+      </div></div>
+
+
+
+</div>
+
+<div><div style="height: 20px; overflow: hidden; width: 100%;"></div>
+<hr class="styled-hr" style="width:100%;"></hr>
+<div style="height: 20px; overflow: hidden; width: 100%;"></div></div>
+
+<div><div id="805273652965362687" align="left" style="width: 100%; overflow-y: hidden;" class="wcustomhtml"> <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+      <a href="https://www.youtube.com/srcmake" target="_blank" style="color:inherit;text-decoration:none;">
+	  <div style="background:rgba(0,0,0,0.9);color:white;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:auto;overflow: hidden;padding: 1rem 1rem;text-align:center;">
+        <i style="color:#ff0000;" class="fab fa-youtube fa-3x"></i>
+        <h3>Youtube</h3>
+        <p style="color:#F1B957;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Watch my videos.</p>
+      </div></div>
+
+
+
+</div>
+
+<div><div style="height: 20px; overflow: hidden; width: 100%;"></div>
+<hr class="styled-hr" style="width:100%;"></hr>
+<div style="height: 20px; overflow: hidden; width: 100%;"></div></div>
+
+<div><div id="719883675971344953" align="left" style="width: 100%; overflow-y: hidden;" class="wcustomhtml"><link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+      <a href="https://twitter.com/srcmake" target="_blank" style="color:inherit;text-decoration:none;">
+	  <div style="background:rgba(0,0,0,0.9);color:white;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:auto;overflow: hidden;padding: 1rem 1rem;text-align:center;">
+        <i style="color:#38A1F3;" class="fab fa-twitter fa-3x"></i>
+        <h3>Twitter</h3>
+        <p style="color:#F1B957;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Get the latest news.</p>
+      </div></div>
+
+
+
+</div>
+
+<div><div style="height: 20px; overflow: hidden; width: 100%;"></div>
+<hr class="styled-hr" style="width:100%;"></hr>
+<div style="height: 20px; overflow: hidden; width: 100%;"></div></div>
+
+<div><div id="801692476943472893" align="left" style="width: 100%; overflow-y: hidden;" class="wcustomhtml"> <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+      <a href="https://www.twitch.tv/srcmake" target="_blank" style="color:inherit;text-decoration:none;">
+	  <div style="background:rgba(0,0,0,0.9);color:white;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:auto;overflow: hidden;padding: 1rem 1rem;text-align:center;">
+        <i style="color:#6441a5;" class="fab fa-twitch fa-3x"></i>
+        <h3>Twitch</h3>
+        <p style="color:#F1B957;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">See the me code live.</p>
+      </div></div>
+
+
+
+</div>
+
+<div><div style="height: 20px; overflow: hidden; width: 100%;"></div>
+<hr class="styled-hr" style="width:100%;"></hr>
+<div style="height: 20px; overflow: hidden; width: 100%;"></div></div>
+
+<div><div id="396714267600203236" align="left" style="width: 100%; overflow-y: hidden;" class="wcustomhtml"><link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+      <a href="https://github.com/srcmake" target="_blank" style="color:inherit;text-decoration:none;">
+	  <div style="background:rgba(0,0,0,0.9);color:white;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:auto;overflow: hidden;padding: 1rem 1rem;text-align:center;">
+        <i style="color:white;" class="fab fa-github fa-3x"></i>
+        <h3>Github</h3>
+        <p style="color:#F1B957;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">My latest projects.</p>
+      </div></div>
+
+
+
+</div>
+		</ul>
+	</div>
+</div>
+
+	        </td>
+	</tr>
+</table>
+
+</div>
+</div>
+					</div>
+				</div>
+				<!-- end main-wrap -->
+
+				<!-- footer-wrap -->
+				<div id="footer-wrap">
+
+<style type="text/css">
+	@font-face {
+		font-family: SQMarket-Medium;
+		font-style: normal;
+		font-weight: 500;
+		src:
+			url("//cdn2.editmysite.com/fonts/SQ_Market/sqmarket-medium.woff2") format("woff2"),
+			url("//cdn2.editmysite.com/fonts/SQ_Market/sqmarket-medium.woff") format("woff");
+	}
+</style>
+
+<div id="weebly-footer-signup-container-v3">
+	<a
+		href="https://www.weebly.com/signup?utm_source=internal&utm_medium=footer"
+		target="_blank"
+		class="signup-container-header"
+		id="signup-link-href"
+	>
+		<div class="powered-by">
+			<div class="footer-published-ab-powered-by">
+				Powered by <span class="link weebly-icon"></span>
+				<img class="footer-ab-published-toast-image" src="//cdn2.editmysite.com/images/site/footer/footer-toast-published-image-1.png">
+				<span class="footer-ab-published-toast-text">Create your own unique website with customizable templates.</span>
+				<span class="footer-ab-published-toast-button-wrapper">
+					<button class="footer-published-ab-button">Get Started</button>
+				</span>
+			</div>
+		</div>
+	</a>
+</div>
+
+<script type="text/javascript" src="//cdn2.editmysite.com/js/site/footerSignup.js?buildTime=1568240901"></script>
+<script type="text/javascript">
+	if (document.readystate === 'complete') {
+		Weebly.footer.setupContainer('cdn2.editmysite.com', '1568240901');
+	} else {
+		document.addEventListener('DOMContentLoaded', function() {
+			Weebly.footer.setupContainer('cdn2.editmysite.com', '1568240901');
+		});
+	}
+</script>
+</div>
+				<!-- end footer-wrap -->
+
+			</div>
+		</div>
+	</div>
+	<!-- end wrapper -->
+
+	<!-- JavaScript -->
+	<script type="text/javascript" src="/files/theme/plugins.js" ></script>
+	<script type="text/javascript" src="/files/theme/custom.js"></script>
+	<script type="text/javascript" src="/files/theme/mobile.js"></script>
+
+    <div id="customer-accounts-app"></div>
+    <script src="//cdn2.editmysite.com/js/site/main-customer-accounts-site.js?buildTime=1562006036"></script>
+
+		<script>
+	var MY_ADDRESS = '0x7891338cC2d668bA268B69e3b8f85Cdf3660495E'
+	var tipButton = document.querySelector('.tip-button-side')
+
+	tipButton.addEventListener('click', function() 
+		{
+		if (typeof web3 === 'undefined') 
+			{
+			return renderMessage('<div>You need to install <a href=“https://metmask.io“>MetaMask </a> to use this feature.  <a href=“https://metmask.io“>https://metamask.io</a></div>')
+			}
+
+		var user_address = web3.eth.accounts[0]
+
+		web3.eth.sendTransaction(
+			{
+			to: MY_ADDRESS,
+			from: user_address,
+			value: web3.toWei('0.01', 'ether'),
+			}, 
+			function (err, transactionHash) 
+				{
+				if (err) return renderMessage('There was a problem!: ' + err.message)
+				renderMessage('Thanks for the generosity!!')
+			})
+		})
+
+	function renderMessage (message) 
+		{
+		var messageEl = document.querySelector('.message')
+		messageEl.innerHTML = message
+		}
+	</script><script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-7870337-1']);
+	_gaq.push(['_setDomainName', 'none']);
+	_gaq.push(['_setAllowLinker', true]);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+
+	_W.Analytics = _W.Analytics || {'trackers': {}};
+	_W.Analytics.trackers.wGA = '_gaq';
+</script>
+
+<script type="text/javascript" async=1>
+	;(function(p,l,o,w,i,n,g){if(!p[i]){p.GlobalSnowplowNamespace=p.GlobalSnowplowNamespace||[];
+			p.GlobalSnowplowNamespace.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)
+			};p[i].q=p[i].q||[];n=l.createElement(o);g=l.getElementsByTagName(o)[0];n.async=1;
+			n.src=w;g.parentNode.insertBefore(n,g)}}(window,document,'script','//cdn2.editmysite.com/js/wsnbn/snowday262.js','snowday'));
+
+	var r = [99, 104, 101, 99, 107, 111, 117, 116, 46, 40, 119, 101, 101, 98, 108, 121, 124, 101, 100, 105, 116, 109, 121, 115, 105, 116, 101, 41, 46, 99, 111, 109];
+	var snPlObR = function(arr) {
+		var s = '';
+		for (var i = 0 ; i < arr.length ; i++){
+			s = s + String.fromCharCode(arr[i]);
+		}
+		return s;
+	};
+	var s = snPlObR(r);
+
+	var regEx = new RegExp(s);
+
+	_W.Analytics = _W.Analytics || {'trackers': {}};
+	_W.Analytics.trackers.wSP = 'snowday';
+	_W.Analytics.user_id = '5390645';
+	_W.Analytics.site_id = '865495106378703271';
+
+	// Setting do not track if the GDPR cookie is not present. This is then checked by the snowday initializer
+	// to set tracking decisions. https://github.com/snowplow/snowplow-javascript-tracker/blob/2.6.2/src/js/tracker.js#L1509
+	window.doNotTrack = document.cookie.indexOf('gdpr-kb') === -1 ? 'yes' : null;
+
+
+	(function(app_id, ec_hostname, discover_root_domain) {
+		var track = window[_W.Analytics.trackers.wSP];
+		if (!track) return;
+		track('newTracker', app_id, ec_hostname, {
+			appId: app_id,
+			post: true,
+			platform: 'web',
+			discoverRootDomain: discover_root_domain,
+			cookieName: '_snow_',
+			contexts: {
+				webPage: true,
+				performanceTiming: true,
+				gaCookies: true
+			},
+			crossDomainLinker: function (linkElement) {
+				return regEx.test(linkElement.href);
+			},
+			respectDoNotTrack: document.cookie.indexOf('gdpr-kb') === -1
+		});
+		track('trackPageView', _W.Analytics.user_id+':'+_W.Analytics.site_id);
+		track('crossDomainLinker', function (linkElement) {
+			return regEx.test(linkElement.href);
+		});
+	})(
+		'_wn',
+		'ec.editmysite.com',
+		true
+	);
+</script>
+
+
+
+
+<script>
+	(function(jQuery) {
+		try {
+			if (jQuery) {
+				jQuery('div.blog-social div.fb-like').attr('class', 'blog-social-item blog-fb-like');
+				var $commentFrame = jQuery('#commentArea iframe');
+				if ($commentFrame.length > 0) {
+					var frameHeight = jQuery($commentFrame[0].contentWindow.document).height() + 50;
+					$commentFrame.css('min-height', frameHeight + 'px');
+				}
+				if (jQuery('.product-button').length > 0){
+					jQuery(document).ready(function(){
+						jQuery('.product-button').parent().each(function(index, product){
+							if(jQuery(product).attr('target') == 'paypal'){
+								if (!jQuery(product).find('> [name="bn"]').length){
+									jQuery('<input>').attr({
+										type: 'hidden',
+										name: 'bn',
+										value: 'DragAndDropBuil_SP_EC'
+									}).appendTo(product);
+								}
+							}
+						});
+					});
+				}
+			}
+			else {
+				// Prototype
+				$$('div.blog-social div.fb-like').each(function(div) {
+					div.className = 'blog-social-item blog-fb-like';
+				});
+				$$('#commentArea iframe').each(function(iframe) {
+					iframe.style.minHeight = '410px';
+				});
+			}
+		}
+		catch(ex) {}
+	})(window._W && _W.jQuery);
+</script>
+
+<script>
+	window._W.isEUUser = true;
+	window._W.showCookieToAll = "";
+</script>
+
+<div id="fb-root"></div>
+<script>
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId : '190291501407',
+			xfbml : true,
+			version : 'v2.6'
+		});
+
+        // Set Facebook comment plugin's colorscheme based off of theme
+		var comments = document.getElementsByClassName('facebook-comment-widget'),
+			scheme = document.body.className.match('wsite-theme-light');
+
+		for (var i = 0; i < comments.length; i++) {
+			comments[i].setAttribute('colorscheme', scheme ? 'light' : 'dark');
+		}
+
+		var fbCommentCounts;
+
+		FB.Event.subscribe('xfbml.render', function(){
+			fbCommentCounts = jQuery('.fb_comments_count');
+			for (var i = 0; i < fbCommentCounts.length; i++) {
+				var commentText = (jQuery(fbCommentCounts[i]).text() == '1' ? "Comment" : "Comments");
+				jQuery(fbCommentCounts[i]).parent().siblings('.fb_comment_count_label').text(commentText);
+			}
+		});
+
+		var comment_callback = function(res) {
+			FB.XFBML.parse(); // Refresh comment counters on page
+		}
+
+		FB.Event.subscribe('comment.create', comment_callback);
+		FB.Event.subscribe('comment.remove', comment_callback);
+
+	};
+
+	(function(d, s, id){
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/"+_W.facebookLocale+"/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+<script type='text/javascript'>
+	(function() {
+		function j(src, id) {
+			var s = document.createElement('script');
+			s.type = 'text/javascript';
+			s.async = true;
+			s.src = src;
+			if(id) {s.id=id};
+			document.getElementsByTagName('head')[0].appendChild(s);
+		}
+		j('//platform.twi'+'tter.com/widgets.js');
+	})()
+</script>
+	</body>
+</html>
